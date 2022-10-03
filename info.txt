@@ -1,0 +1,17 @@
+Componentes funcionales
+-Importar React (opcional)
+-Crear funcion
+-El nombre de la funcion debe empezar con Mayuscula
+-La funcion debe retornar algo(siempre debe ser un solo elemento)
+-Se debe Importar la funcion
+
+Componentes
+-Propiedades
+-States
+-Ciclo de vida
+-Metodos del ciclo de vida
+
+-hooks:
+-siempre comienzan con USE
+-siempre se declaran dentro de un Componentes
+-no se pueden declarar condicionales
