@@ -1,5 +1,5 @@
 html{
-    background-color: rgba(17, 0, 36, 1)
+    background-color: darkslategray;
 }
 /* Utilice grilla para acomodar el navBar */
 .grilla {
@@ -60,11 +60,23 @@ html{
     transition: .5s;
     transform: scale(1.3);
 }
+.totalCart{
+    display: flex;
+}
+.totalCart p{
+    position: absolute;
+    top:-0.5em;
+    right: 1em;
+    border: 2px solid black;
+    background-color: aliceblue;
+    border-radius: 100em;
+    padding: 3px 8px 3px 8px ;
+}
 
 .cart {
     grid-area: cart;
     padding-top: 1.5em;
-    padding-left: 5em;
+    padding-left: 4em;
 }
 
 .cartImg {
@@ -82,7 +94,7 @@ html{
 }
 
 #root {
-    background-color: rgba(17, 0, 36, 1);
+    background-color: darkslategray;
 }
 
 .spinner{
@@ -172,8 +184,8 @@ html{
     background-color: darkslategray;
 }
 .producto img{
-    width: 30em;
-    height: 30em;
+    width: 23em;
+    height: 23em;
 }
 .texto{
     display: flex;
@@ -189,11 +201,92 @@ html{
     color: white;
     font-size: 2em;
 }
+.contadorProductos{
+   display: flex; 
+   justify-content: center;
+   align-items: center;
+}
+.contadorProductos button{
+    margin: 1em;
+}
+.masOMenos{
+    border-radius: 70px;
+    padding: 13px 18px 13px 18px ;
+}
+.masOMenos:hover{
+    background-color: green;
+    transition: .3s;
+}
+.finalizarCompraDetail{
+    margin: 0 auto;
+    padding:8px 12px 8px 12px ;
+    border-radius: 20px;
+    font-family: 'EB Garamond', serif;
+    font-size: 1em;
+    font-weight: bolder;
+    color: black;
+}
+.finalizarCompraDetail:hover{
+    background-color: blue;
+    transform: scale(1.1);
+    transition: .3s;
+}
 
 /* Fin diseño de ItemDetail */
-
+/* Diseñamos vista dentro del carrito*/
 .cartView{
     color: white;
     font-family: 'EB Garamond', serif;
     margin-left: 2vw;
 }
+.contenidoCarrito{
+    display: flex;
+    background-color: darkslategray;
+    align-items: center;
+    margin: 2em;
+}
+.contenidoCarrito h1{
+    color: white;
+    padding-left: 3em;
+    padding-right: 3em;
+    font-size: larger;
+}
+.imagenCarrito{
+    width: 7em;
+    height:7em;
+}
+.finalizarCompra{
+    margin: 0 auto;
+    margin-left: 45%;
+    padding:8px 12px 8px 12px ;
+    border-radius: 20px;
+    font-family: 'EB Garamond', serif;
+    font-size: 1em;
+    font-weight: bolder;
+    color: black;
+}
+.finalizarCompra:hover{
+    background-color: blue;
+    transform: scale(1.1);
+    transition: .3s;
+}
+
+.sinProductos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.sinProductos a:-webkit-any-link{
+    color: aliceblue;
+}
+.DeleteIcon{
+    color: aliceblue;
+    font-size: 3em;
+}
+.DeleteIcon:hover{
+    color: red;
+    transform: scale(1.2);
+    transition: .4s;
+}
+/* Fin diseño vista dentro del carrito*/

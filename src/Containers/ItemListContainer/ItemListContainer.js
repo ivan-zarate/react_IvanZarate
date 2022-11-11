@@ -3,31 +3,33 @@ import '../../Componentes/css/style.css';
 import { ItemList } from '../ItemList/ItemList';
 import { useParams } from 'react-router-dom';
 import BounceLoader from "react-spinners/BounceLoader";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 export const ItemListContainer = ({ greeting }) => {
 
-    const [productos, setProductos] = useState([]);
+    const [products, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
 
-    const URL_BASE = 'https://fakestoreapi.com/products';
-    const URL_CAT = `${URL_BASE}/category/${id}`;
-
     useEffect(() => {
-        const getProducts = async () => {
-            try {
-                    const res = await fetch(id ? URL_CAT : URL_BASE);
-                    const data = await res.json();
-                console.log(data);
-                setProductos(data);
-                
-            } catch {
-                console.log("Error");
-            } finally {
-                setLoading(false);
-            }
-        };
-        getProducts();
+        const productCollection = collection(db, 'productos');
+        const q = query(productCollection, where('category', '==', `${id}`));
+        getDocs(id ? q : productCollection)
+            .then((result) => {
+                const list = result.docs.map((item) => {
+                    return {
+                        ...item.data(),
+                        id: item.id,
+                    };
+                });
+                console.log(list);
+                setProductos(list);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(setLoading(false));
     }, [id]);
 
     return (
@@ -38,7 +40,7 @@ export const ItemListContainer = ({ greeting }) => {
             <div className='promociones'>
                 {
                     <>
-                        {loading ? <BounceLoader className='loading' color={'#36d7b7'} loading={loading} size={100}/> : <ItemList listaProductos={productos} />}
+                        {loading ? <BounceLoader className='loading' color={'#36d7b7'} loading={loading} size={100} /> : <ItemList listaProductos={products} />}
                     </>}
             </div>
         </>

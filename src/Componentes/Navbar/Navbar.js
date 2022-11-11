@@ -7,10 +7,11 @@ import '../css/style.css';
 export const Navbar = () => {
     const categorias= [
         {nombre:"Inicio", id:0, ruta:"/"},
-        {nombre:"Jewelery", id:1, ruta:"categoria/jewelery"},
-        {nombre:"Electronics", id:2, ruta:"categoria/electronics"},
-        {nombre:"Men's clothing", id:3, ruta:"categoria/men's clothing"},
-        {nombre:"Women's clothing", id:4, ruta:"categoria/women's clothing"},
+        {nombre:"Bebes", id:1, ruta:"categoria/bebes"},
+        {nombre:"Juegos de mesa", id:2, ruta:"categoria/juegos de mesa"},
+        {nombre:"Muñecos y muñecas", id:3, ruta:"categoria/muñecos y muñecas"},
+        {nombre:"Vehiculos", id:4, ruta:"categoria/vehiculos"},
+        {nombre:"Video Juegos", id:5, ruta:"categoria/video juegos"},
     ]
     return (
         <>

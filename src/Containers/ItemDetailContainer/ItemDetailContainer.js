@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import '../../Componentes/css/style.css';
 import { ItemDetail } from '../ItemDetail/ItemDetail';
 import BounceLoader from "react-spinners/BounceLoader";
 import { useParams } from 'react-router-dom';
+import { getDoc, collection, doc } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
 
 export const ItemDetailContainer = () => {
 
@@ -10,31 +12,31 @@ export const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
-  const URL_BASE = `https://fakestoreapi.com/products/${id}`;
-
   useEffect(() => {
-    const getProduct = async () => {
-      try {
-          const res = await fetch(URL_BASE);
-          const data = await res.json();
-          console.log(data);
-          setProduct(data);
-      } catch {
-        console.log("Error");
-      } finally {
-        setLoading(false);
-      }
-    };
-    getProduct();
-  }, );
+    const productCollection = collection(db, 'productos');
+    const refDoc = doc(productCollection, id);
+
+    getDoc(refDoc)
+      .then((result) => {
+        setProduct({
+          id: result.id,
+          ...result.data()
+        });
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(setLoading(false));
+  }, [id]);
 
   return (
     <>
-        {
-          <>
-            {loading ? <BounceLoader className='loading2' color={'#36d7b7'} loading={loading} size={100}/> : <ItemDetail product={product} />}
-          </>}
-      
+      {
+        <>
+          {loading ? <BounceLoader className='loading2' color={'#36d7b7'} loading={loading} size={100} /> : <ItemDetail product={product} />}
+        </>}
+
     </>
   )
 }
