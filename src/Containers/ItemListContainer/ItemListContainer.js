@@ -23,8 +23,8 @@ export const ItemListContainer = ({ greeting }) => {
                         id: item.id,
                     };
                 });
-                console.log(list);
                 setProductos(list);
+                console.log("productos", list);
             })
             .catch((error) => {
                 console.log(error);
